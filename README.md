@@ -215,9 +215,9 @@ POST /api/post
 
 # 📸 Screenshots
 
-| Home | Community |
-|------|-----------|
-| Add screenshots here | Add screenshots here |
+<img width="1920" height="921" alt="image" src="https://github.com/user-attachments/assets/8c127ecc-c712-4afc-92ec-81179c3b33a4" />
+
+<img width="1920" height="921" alt="image" src="https://github.com/user-attachments/assets/e7d813c7-b913-4c6a-874a-14fab5b73715" />
 
 ---
 
