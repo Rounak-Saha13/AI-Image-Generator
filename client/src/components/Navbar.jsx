@@ -35,7 +35,7 @@ const Navbar = () => {
   console.log(path);
   return (
     <Container>
-      GemAI
+      VisionCraft AI ⭐
       {path[1] === "post" ? (
         <Button
           text="Explore Posts"

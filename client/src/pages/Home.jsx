@@ -82,51 +82,56 @@ const Home = () => {
       });
   };
 
+  // Fetch posts only once
   useEffect(() => {
     getPosts();
   }, []);
 
+  // Filter posts whenever search or posts change
   useEffect(() => {
-    if (!search) {
-      setFilteredPost(posts);
-    }
-    const filteredPosts = posts.filter((post) => {
-      const promptMatch = post?.prompt?.toLowerCase().includes(search);
-      const authorMatch = post?.author?.toLowerCase().includes(search);
+    const searchText = search.trim().toLowerCase();
 
-      return promptMatch || authorMatch;
+    if (!searchText) {
+      setFilteredPost(posts);
+      return;
+    }
+
+    const filteredPosts = posts.filter((post) => {
+      return (
+        post?.prompt?.toLowerCase().includes(searchText) ||
+        post?.name?.toLowerCase().includes(searchText)
+      );
     });
 
-    if (search) {
-      setFilteredPost(filteredPosts);
-    }
+    setFilteredPost(filteredPosts);
   }, [posts, search]);
 
   return (
     <Container>
       <HeadLine>
-        Explore popular posts in the Community!
-        <Span>⦾ Generated with AI ⦾</Span>
+        Where Imagination Meets AI!!
+        <Span>✨ Powered by AI </Span>
       </HeadLine>
+
       <SearchBar
         search={search}
         handleChange={(e) => setSearch(e.target.value)}
       />
+
       <Wrapper>
         {error && <div style={{ color: "red" }}>{error}</div>}
+
         {loading ? (
           <CircularProgress />
         ) : (
           <CardWrapper>
             {filteredPost.length > 0 ? (
-              <>
-                {filteredPost
-                  .slice()
-                  .reverse()
-                  .map((item, index) => (
-                    <ImageCard key={index} item={item} />
-                  ))}
-              </>
+              filteredPost
+                .slice()
+                .reverse()
+                .map((item, index) => (
+                  <ImageCard key={index} item={item} />
+                ))
             ) : (
               <>No Posts Found !!</>
             )}
