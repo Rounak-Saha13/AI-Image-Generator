@@ -1,13 +1,13 @@
 # 🎨 AI Image Generator
 
-A modern **MERN Stack AI Image Generator** that transforms text prompts into stunning AI-generated images using the **Pollinations AI Image API (Flux Model)**. Users can generate images in real time, explore community creations, search generated images, and download or share their favorite AI artwork through a clean and responsive interface.
+A modern **MERN Stack AI Image Generator** that transforms text prompts into AI-generated images using **Cloudflare Workers AI**. Users can generate images in real time, explore community creations, search generated images, and download or share their favorite AI artwork through a clean and responsive interface.
 
 ---
 
 ## 🚀 Features
 
 - 🤖 Generate AI images from text prompts
-- ⚡ Powered by the Pollinations AI Image API (Flux Model)
+- ⚡ Powered by Cloudflare Workers AI (Flux Schnell)
 - 🎲 Surprise Me feature for random prompt generation
 - 🔍 Search generated images instantly
 - 🖼️ Community Gallery to browse shared creations
@@ -38,8 +38,8 @@ A modern **MERN Stack AI Image Generator** that transforms text prompts into stu
 - dotenv
 
 ### AI Service
-- **Pollinations AI Image API**
-- **Flux Image Generation Model**
+- **Cloudflare Workers AI**
+- **Flux Schnell Image Generation Model**
 
 ---
 
@@ -108,9 +108,12 @@ MONGODB_URL=your_mongodb_connection_string
 CLOUDINARY_CLOUD_NAME=your_cloud_name
 CLOUDINARY_API_KEY=your_api_key
 CLOUDINARY_API_SECRET=your_api_secret
+CF_API_TOKEN=your_cloudflare_api_token
+CF_ACCOUNT_ID=your_cloudflare_account_id
+CF_IMAGE_MODEL=@cf/black-forest-labs/flux-1-schnell
 ```
 
-> **Note:** This project uses the **Pollinations AI Image API**, which does not require an API key for basic image generation.
+`CF_IMAGE_MODEL` is optional and defaults to `@cf/black-forest-labs/flux-1-schnell`.
 
 ---
 
@@ -146,23 +149,11 @@ http://localhost:3000
 
 ---
 
-# 🖼️ Pollinations AI Integration
+# 🖼️ Cloudflare Workers AI Integration
 
-Images are generated using the Pollinations AI Image API.
+Images are generated using Cloudflare Workers AI and the Flux Schnell model.
 
-Example request:
-
-```http
-https://image.pollinations.ai/prompt/A futuristic city at sunset?model=flux
-```
-
-or
-
-```http
-https://gen.pollinations.ai/image/A futuristic city at sunset?model=flux
-```
-
-The backend dynamically constructs the image generation URL from the user's prompt and returns the generated image to the frontend for preview and storage.
+The backend sends the user's prompt to Cloudflare and returns the generated image as base64 data for preview and storage.
 
 ---
 
@@ -170,8 +161,8 @@ The backend dynamically constructs the image generation URL from the user's prom
 
 1. User enters a prompt.
 2. Frontend sends the prompt to the Express API.
-3. Backend generates a Pollinations image URL.
-4. Pollinations AI creates the image.
+3. Backend sends the prompt to Cloudflare Workers AI.
+4. Flux Schnell creates the image.
 5. The generated image is displayed.
 6. Users can save or share the generated image.
 7. Image metadata is stored in MongoDB.
@@ -271,4 +262,4 @@ This project is licensed under the MIT License.
 
 **Dx Jayden**
 
-Developed using the **MERN Stack** with **Pollinations AI Image API (Flux Model)** to create a fast, scalable, and user-friendly AI-powered image generation platform.
+Developed using the **MERN Stack** with **Cloudflare Workers AI** to create a fast, scalable, and user-friendly AI-powered image generation platform.
