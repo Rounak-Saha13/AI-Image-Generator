@@ -4,7 +4,7 @@ const API = axios.create({
   baseURL: "https://ai-image-generator-hij4.onrender.com",
 });
 
-export const GetPosts = async () => await API.get("/post/");
-export const CreatePost = async (data) => await API.post("/post/", data);
+export const GetPosts = async () => await API.get("/api/post/");
+export const CreatePost = async (data) => await API.post("/api/post/", data);
 export const GenerateImageFromPrompt = async (data) =>
-  await API.post("/generateImage/", data);
+  await API.post("/api/generateImage/", data);
